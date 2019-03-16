@@ -2,18 +2,18 @@ import { StyleSheet, View } from "react-native";
 import { Icon } from "react-native-elements";
 import * as React from "react";
 
-interface TabBarIconProps {
+interface NavigationIconProps {
   name: string;
-  focused: boolean;
+  distent: boolean;
   tintColor: string;
 }
 
-const TabBarIcon = (props: TabBarIconProps) => {
+const NavigationIcon = (props: NavigationIconProps) => {
   const { container } = styles;
 
   return (
     <View style={ container }>
-      <Icon name={ props.name } color={ props.tintColor } size={ props.focused ? 30 : 24 }/>
+      <Icon name={ props.name } color={ props.tintColor } size={ props.distent ? 30 : 24 }/>
     </View>
   )
 };
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export { TabBarIcon }
+export { NavigationIcon }

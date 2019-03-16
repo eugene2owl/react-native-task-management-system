@@ -4,17 +4,17 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import { Color } from "../../assets/color";
 import { TaskStack } from "../../navigation/routes";
 
-interface TaskListScreenProps {
+interface TaskDetailsScreenProps {
 
 }
 
-export class TaskListScreen extends Component<TaskListScreenProps> { // TODO add state and props separately
+export class TaskDetailsScreen extends Component<TaskDetailsScreenProps> { // TODO add state and props separately
 
   // @ts-ignore
   private navigation = this.props.navigation;
 
-  private navigateToDetails(): void {
-    this.navigation.navigate(TaskStack.TASK_DETAILS);
+  private navigateToTimeLog(): void {
+    this.navigation.navigate(TaskStack.TASK_TIME_LOG);
   }
 
   render(): ReactNode {
@@ -22,11 +22,11 @@ export class TaskListScreen extends Component<TaskListScreenProps> { // TODO add
 
     return (
       <View style={ container }>
-        <Text style={ text }>Task List Screen</Text>
+        <Text style={ text }>Task Edit Screen</Text>
         <Button
-          title="Navigate to Task Edit Screen"
-          onPress={() => this.navigateToDetails()}
-        />
+          title="Navigate to Task Time Log Screen"
+          onPress={ () => this.navigateToTimeLog() }/>
+        <Button title="Back" onPress={ () => this.navigation.goBack() }/>
       </View>
     );
   }
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({ // TODO move to separate file
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Color.CARBON
+    backgroundColor: Color.ENSIGN
   },
   text: {
     fontSize: 15,

@@ -1,23 +1,16 @@
 import * as React from "react";
 import { Component, ReactNode } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Color } from "../../assets/color";
 
-export class TeamListScreen extends Component { // TODO add props
-
-  // @ts-ignore
-  private navigation = this.props.navigation;
+export class UserDetailsScreen extends Component { // TODO add props
 
   render(): ReactNode {
     const { container } = styles;
 
     return (
       <View style={ container }>
-        <Text>Team List Screen</Text>
-        <Button
-          title="Navigate To User Edit Screen"
-          onPress={() => {}}/>
-        <Button title="Back" onPress={() => this.navigation.openDrawer()}/>
+        <Text>User Edit Screen</Text>
       </View>
     )
   }
