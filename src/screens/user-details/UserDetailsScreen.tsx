@@ -1,30 +1,19 @@
+import styles from './styles';
 import * as React from "react";
 import { Component, ReactNode } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Color } from "../../assets/color";
+import { Button, Text, View } from "react-native";
 
 export class UserDetailsScreen extends Component { // TODO add props
 
-  render(): ReactNode {
-    const { container } = styles;
+  // @ts-ignore
+  private navigation = this.props.navigation;
 
+  render(): ReactNode {
     return (
-      <View style={ container }>
-        <Text>User Edit Screen</Text>
+      <View style={ styles.container }>
+        <Text>User Details Screen</Text>
+        <Button title="Back" onPress={() => this.navigation.goBack()}/>
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({ // TODO move to separate file
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Color.ENSIGN
-  },
-  text: {
-    fontSize: 15,
-    paddingVertical: 5
-  }
-});

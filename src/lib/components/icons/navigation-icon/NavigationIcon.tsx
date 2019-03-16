@@ -1,4 +1,5 @@
-import { StyleSheet, View } from "react-native";
+import styles from './styles';
+import { View } from "react-native";
 import { Icon } from "react-native-elements";
 import * as React from "react";
 
@@ -9,19 +10,11 @@ interface NavigationIconProps {
 }
 
 const NavigationIcon = (props: NavigationIconProps) => {
-  const { container } = styles;
-
   return (
-    <View style={ container }>
+    <View style={ styles.container }>
       <Icon name={ props.name } color={ props.tintColor } size={ props.distent ? 30 : 24 }/>
     </View>
   )
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: 30
-  }
-});
 
 export { NavigationIcon }

@@ -1,37 +1,27 @@
+import styles from './styles';
 import * as React from "react";
 import { Component, ReactNode } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
-import { Color } from "../../assets/color";
+import { Button, Text, View } from "react-native";
+import { UsersStack } from "../../navigation/routes";
 
 export class UserListScreen extends Component { // TODO add props
 
   // @ts-ignore
   private navigation = this.props.navigation;
 
-  render(): ReactNode {
-    const { container } = styles;
+  private navigateToDetails(): void {
+    this.navigation.navigate(UsersStack.USER_DETAILS);
+  }
 
+  render(): ReactNode {
     return (
-      <View style={ container }>
+      <View style={ styles.container }>
         <Text>User List Screen</Text>
         <Button
-          title="Navigate To User Edit Screen"
-          onPress={() => {}}/>
-        <Button title="Back" onPress={() => this.navigation.openDrawer()}/>
+          title="Navigate To User Details Screen"
+          onPress={() => this.navigateToDetails()}
+        />
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({ // TODO move to separate file
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Color.ENSIGN
-  },
-  text: {
-    fontSize: 15,
-    paddingVertical: 5
-  }
-});

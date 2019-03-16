@@ -1,15 +1,15 @@
 // @ts-ignore
 import { createAppContainer, createDrawerNavigator } from "react-navigation";
 import { UsersDrawer } from "./routes";
-import { UserListScreen } from "../screens/user-list/UserListScreen";
-import { NavigationIcon } from "../lib/components/icons/NavigationIcon";
+import { NavigationIcon } from "../lib/components/icons/navigation-icon/NavigationIcon";
 import * as React from "react";
-import { TeamListScreen } from "../screens/team-list/TeamListScreen";
 import { Color } from "../assets/color";
+import UsersStackNavigator from "./UsersStackNavigator";
+import TeamsStackNavigator from "./TeamsStackNavigator";
 
 const routerConfig = {
   [UsersDrawer.USER_LIST]: {
-    screen: UserListScreen,
+    screen: UsersStackNavigator,
     navigationOptions: {
       drawerLabel: 'Users',
       // @ts-ignore
@@ -19,7 +19,7 @@ const routerConfig = {
     }
   },
   [UsersDrawer.TEAM_LIST]: {
-    screen: TeamListScreen,
+    screen: TeamsStackNavigator,
     navigationOptions: {
       drawerLabel: 'Teams',
       // @ts-ignore

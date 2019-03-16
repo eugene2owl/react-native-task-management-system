@@ -4,7 +4,7 @@ export enum AppTab {
   USERS = 'USERS'
 }
 
-export enum TaskStack {
+export enum TasksStack {
   TASK_LIST = 'TASK_LIST',
   TASK_DETAILS = 'TASK_DETAILS',
   TASK_TIME_LOG = 'TASK_TIME_LOG'
@@ -13,4 +13,14 @@ export enum TaskStack {
 export enum UsersDrawer {
   USER_LIST = 'USER_LIST',
   TEAM_LIST = 'TEAM_LIST'
+}
+
+export enum UsersStack {
+  USER_LIST = 'USER_LIST',
+  USER_DETAILS = 'USER_DETAILS'
+}
+
+export enum TeamsStack {
+  TEAM_LIST = 'TEAM_LIST',
+  USER_DETAILS = 'USER_DETAILS'
 }

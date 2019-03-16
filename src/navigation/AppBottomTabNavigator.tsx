@@ -4,7 +4,7 @@ import { createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import * as React from "react";
 import { AppTab } from "./routes";
-import { NavigationIcon } from "../lib/components/icons/NavigationIcon";
+import { NavigationIcon } from "../lib/components/icons/navigation-icon/NavigationIcon";
 import { Color } from "../assets/color";
 import { TaskStatusFlow } from "../screens/task-status-flow/TaskStatusFlow";
 import TaskStackNavigator from './TasksStackNavigator';
