@@ -1,0 +1,36 @@
+{
+  "name": "eugene-react-native-task-management-system",
+  "version": "0.0.1",
+  "description": "Eugene's React Native based app Task Management System.",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "emulator": "~/Android/Sdk/tools/emulator -avd Nexus_5X_API_27",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EugeneOwl/react-native-task-management-system"
+  },
+  "author": "e.ivanov",
+  "dependencies": {
+    "react": "16.8.3",
+    "react-native": "0.59.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/runtime": "^7.3.4",
+    "@types/jest": "^24.0.11",
+    "@types/react": "^16.8.8",
+    "@types/react-native": "^0.57.40",
+    "@types/react-test-renderer": "^16.8.1",
+    "babel-jest": "^24.5.0",
+    "jest": "^24.5.0",
+    "metro-react-native-babel-preset": "^0.53.1",
+    "react-test-renderer": "16.8.3",
+    "typescript": "^3.3.3333"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
