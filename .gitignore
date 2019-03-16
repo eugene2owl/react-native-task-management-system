@@ -3,3 +3,9 @@
 
 ### Dependencies ###
 node_modules/
+
+### Android ###
+/android/
+
+### Watchman ###
+.watchmanconfig
