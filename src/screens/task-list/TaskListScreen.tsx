@@ -41,7 +41,7 @@ export class TaskListScreen extends Component { // TODO add state and props sepa
     return (
       <View style={ styles.container }>
         { this.state.searchOpened ?
-          <SearchHeader text={ this.state.searchText } searchIcon={ searchIcon } closeIcon={ closeSearchIcon }/>
+          <SearchHeader searchIcon={ searchIcon } closeIcon={ closeSearchIcon }/>
           :
           <ScreenHeader text="Task List" rightIcon={ openSearchIcon }/>
         }

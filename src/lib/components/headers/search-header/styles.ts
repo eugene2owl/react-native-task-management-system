@@ -17,10 +17,6 @@ export default StyleSheet.create({
   searchBarContainer: {
     flex: 6,
   },
-  searchBar: {
-    height: '100%',
-    elevation: 0,
-  },
   closeIconOpacity: {
     flex: 1,
     justifyContent: 'center',

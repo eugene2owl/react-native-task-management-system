@@ -4,6 +4,7 @@ import { TouchableOpacity, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { Icon } from "react-native-elements";
 import { Color } from "../../../../assets/color";
+import SearchBarWrapper from "./search-bar-wrapper/SearchBarWrapper";
 
 export interface SearchHeaderSearchIcon {
   onPress: (text: string) => void;
@@ -14,26 +15,18 @@ export interface SearchHeaderCloseIcon {
 }
 
 interface Props {
-  text: string;
   searchIcon: SearchHeaderSearchIcon;
   closeIcon: SearchHeaderCloseIcon;
 }
 
 const SearchHeader = (props: Props) => {
   const { searchIcon, closeIcon } = props;
-  let { text } = props;
 
   return (
     <View style={ styles.container }>
 
       <View style={ styles.searchBarContainer }>
-        <Searchbar
-          placeholder="Search"
-          onChangeText={ query => text = query }
-          onIconPress={ () => searchIcon.onPress(text) }
-          style={ styles.searchBar }
-          value={ text }
-        />
+        <SearchBarWrapper onIconPress={ (query: string) => searchIcon.onPress(query) }/>
       </View>
 
       <TouchableOpacity
