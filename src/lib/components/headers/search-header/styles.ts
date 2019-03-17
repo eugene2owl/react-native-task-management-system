@@ -12,13 +12,13 @@ export default StyleSheet.create({
 
     // shadow
     shadowColor: Color.CARBON,
-    elevation: 4,
+    elevation: 4
   },
   searchBarContainer: {
-    flex: 6,
+    flex: 6
   },
   closeIconOpacity: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'center'
   }
 })
