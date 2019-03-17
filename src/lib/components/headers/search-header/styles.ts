@@ -1,14 +1,13 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../../../assets/color";
-import { h } from "../../../../consts/environment";
+import { ScreenParameter } from "../../../../consts/ScreenParameter";
 
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
 
     backgroundColor: Color.ASPHALT,
-    height: h / 12,
-    marginBottom: 100, // TODO remove
+    height: ScreenParameter.HEIGHT / 12,
 
     // shadow
     shadowColor: Color.CARBON,

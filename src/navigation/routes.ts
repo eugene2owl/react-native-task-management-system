@@ -1,3 +1,9 @@
+export enum AppAuthSwitch {
+  AUTH_LOADING = 'AUTH_LOADING',
+  LOGIN = 'LOGIN',
+  APP = 'APP'
+}
+
 export enum AppTab {
   TASKS = 'TASKS',
   TASK_STATUS_FLOW = 'TASK_STATUS_FLOW',

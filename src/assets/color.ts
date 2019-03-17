@@ -7,6 +7,6 @@ export enum Color {
   LIGHT = '#A9B7C6',
   NEAT = '#FFF',
   OCEAN = '#568BD8',
-  FRANT ='#2AD1B5',
+  FRANT ='#52D2FB',
   BLOOD = '#B00020'
 }

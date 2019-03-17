@@ -1,3 +1,3 @@
-import AppBottomTabNavigator from './src/navigation/AppBottomTabNavigator';
+import AppAuthSwitchNavigator from './src/navigation/AppAuthSwitchNavigator';
 
-export default AppBottomTabNavigator
+export default AppAuthSwitchNavigator

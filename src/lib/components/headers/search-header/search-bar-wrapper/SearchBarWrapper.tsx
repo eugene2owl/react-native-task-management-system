@@ -12,6 +12,7 @@ interface State {
 }
 
 export default class SearchBarWrapper extends Component<Props> {
+
   state: State = {
     query: ''
   };

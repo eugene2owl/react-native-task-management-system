@@ -1,7 +1,6 @@
 import styles from './styles';
 import * as React from "react";
 import { TouchableOpacity, View } from "react-native";
-import { Searchbar } from "react-native-paper";
 import { Icon } from "react-native-elements";
 import { Color } from "../../../../assets/color";
 import SearchBarWrapper from "./search-bar-wrapper/SearchBarWrapper";
