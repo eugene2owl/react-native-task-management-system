@@ -3,6 +3,11 @@
   "version": "0.0.1",
   "description": "Eugene's React Native based app Task Management System.",
   "private": true,
+  "rnpm": {
+    "assets": [
+      "./src/assets/fonts"
+    ]
+  },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "emulator": "~/Android/Sdk/tools/emulator -avd Nexus_5X_API_27",
@@ -14,6 +19,7 @@
   },
   "author": "e.ivanov",
   "dependencies": {
+    "color": "^3.1.0",
     "react": "16.8.3",
     "react-native": "0.59.1",
     "react-native-elements": "^1.1.0",

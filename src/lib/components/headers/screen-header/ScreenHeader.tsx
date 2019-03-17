@@ -1,6 +1,6 @@
 import styles from './styles';
 import * as React from "react";
-import { TouchableOpacity, View, Text } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-elements";
 import { Color } from "../../../../assets/color";
 
@@ -10,13 +10,13 @@ export interface ScreenHeaderIcon {
   onPress: () => void;
 }
 
-interface ScreenHeaderProps {
+interface Props {
   text: string;
   leftIcon?: ScreenHeaderIcon;
   rightIcon?: ScreenHeaderIcon;
 }
 
-const ScreenHeader = (props: ScreenHeaderProps) => {
+const ScreenHeader = (props: Props) => {
   const { text, leftIcon, rightIcon } = props;
 
   return (
@@ -35,9 +35,11 @@ const ScreenHeader = (props: ScreenHeaderProps) => {
         }
       </TouchableOpacity>
 
-      <Text style={ styles.text } numberOfLines={ 1 } ellipsizeMode='tail'>
-        { text }
-      </Text>
+      <View style={ styles.textContainer }>
+        <Text style={ styles.text } numberOfLines={ 1 } ellipsizeMode="tail">
+          { text }
+        </Text>
+      </View>
 
       <TouchableOpacity
         style={ styles.rightIconOpacity }

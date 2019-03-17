@@ -1,5 +1,15 @@
 import { AppRegistry } from 'react-native';
 import App from './App';
 import { name as appName } from './app.json';
+import paperTheme from './src/assets/paper-theme'
 
-AppRegistry.registerComponent(appName, () => App);
+import * as React from 'react';
+import { Provider as PaperProvider } from 'react-native-paper';
+
+const Main = () => (
+  <PaperProvider theme={ paperTheme }>
+    <App/>
+  </PaperProvider>
+);
+
+AppRegistry.registerComponent(appName, () => Main);

@@ -1,18 +1,20 @@
 import styles from './styles';
 import * as React from "react";
 import { Component, ReactNode } from "react";
-import { Button, Text, View } from "react-native";
+import { View } from "react-native";
+import { ScreenHeader } from "../../lib/components/headers/screen-header/ScreenHeader";
 
-export class UserDetailsScreen extends Component { // TODO add props
+export class UserDetailsScreen extends Component {
 
   // @ts-ignore
   private navigation = this.props.navigation;
 
   render(): ReactNode {
+    const goBackIcon = { name: 'keyboard-arrow-left', onPress: () => this.navigation.goBack() };
+
     return (
       <View style={ styles.container }>
-        <Text>User Details Screen</Text>
-        <Button title="Back" onPress={() => this.navigation.goBack()}/>
+        <ScreenHeader text="User Details" leftIcon={ goBackIcon }/>
       </View>
     )
   }
