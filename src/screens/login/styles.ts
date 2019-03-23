@@ -5,8 +5,14 @@ import { ScreenParameter } from "../../consts/ScreenParameter";
 export default StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     backgroundColor: Color.ENSIGN
+  },
+  scrollContainer: {
+    flex: 1,
+    width: '100%'
+  },
+  scrollContainerContent: {
+    alignItems: 'center'
   },
   contentContainer: {
     flex: 1,
@@ -26,6 +32,6 @@ export default StyleSheet.create({
     marginVertical: 10
   },
   submitButton: {
-
+    marginBottom: 10
   }
 })
