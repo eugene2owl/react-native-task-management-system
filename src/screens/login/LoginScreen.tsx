@@ -6,12 +6,12 @@ import { AppAuthSwitch } from "../../navigation/routes";
 import { ScreenHeader } from "../../lib/components/headers/screen-header/ScreenHeader";
 import { Button, TextInput, Text } from 'react-native-paper';
 import { Color } from "../../assets/color";
-import { authService } from "../../lib/network/http-services/auth-service";
+import { authService } from "../../lib/network/http-services/auth/auth-service";
 import { LoginRequest, LoginResponse } from "../../lib/models/auth/login-request";
 import AsyncStorage from '@react-native-community/async-storage';
 import { AsyncStorageKey } from "../../consts/AsyncStorageKey";
-import { HttpError } from "../../lib/network/http-error";
-import SnackNotification from "../../lib/components/headers/snack-notification/SnackNotification";
+import { HttpError } from "../../lib/network/common/http-error";
+import { SnackNotification } from "../../lib/components/headers/snack-notification/SnackNotification";
 
 interface State {
   usernameControlValue: string;
@@ -56,7 +56,7 @@ export class LoginScreen extends Component {
       .catch((error: HttpError) => this.processError(error));
   }
 
-  private processResponse(response: LoginResponse) {
+  private processResponse(response: LoginResponse): void {
     this.setState({ loginRequestProcessing: false });
     if (response.error) {
       this.showOnStackBar(response.error.message);
@@ -66,7 +66,7 @@ export class LoginScreen extends Component {
     }
   }
 
-  private processError(error: HttpError) {
+  private processError(error: HttpError): void {
     this.setState({ loginRequestProcessing: false });
     this.showOnStackBar(error.message);
   }

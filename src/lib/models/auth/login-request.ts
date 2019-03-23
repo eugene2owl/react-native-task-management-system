@@ -1,14 +1,10 @@
+import { ErrorAbleResponse } from "../common/error-able-response";
+
 export interface LoginRequest {
   username: string;
   password: string;
 }
 
-interface LoginResponseError { // TODO generalize
-  status: number;
-  message: string;
-}
-
-export interface LoginResponse {
+export interface LoginResponse extends ErrorAbleResponse {
   token: string;
-  error: LoginResponseError;
 }

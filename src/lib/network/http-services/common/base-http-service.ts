@@ -5,7 +5,7 @@ export class BaseHttpService {
     'Content-Type': 'application/json'
   };
 
-  get = (url: string) => fetch(url);
+  get = (url: string) => fetch(url).then((response: Response)=> response.json());
 
   post = (url: string, body: object) => fetch(
     url,

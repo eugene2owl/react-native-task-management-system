@@ -3,7 +3,7 @@ import color from 'color';
 import { DefaultTheme } from "react-native-paper";
 import { Color } from "./color";
 
-export default {
+const appPaperTheme = {
   ...DefaultTheme,
   dark: true,
   roundness: 8,
@@ -29,3 +29,5 @@ export default {
       .string()
   }
 };
+
+export { appPaperTheme }

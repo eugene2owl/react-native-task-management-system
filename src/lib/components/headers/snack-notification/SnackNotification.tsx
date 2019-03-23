@@ -8,7 +8,7 @@ interface Props {
   onDismiss: () => void;
 }
 
-export default class SnackNotification extends Component<Props> {
+export class SnackNotification extends Component<Props> {
 
   render() {
     const { message, onDismiss } = this.props;

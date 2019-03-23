@@ -7,8 +7,12 @@ class Auth {
   static readonly login = Auth.base + '/login';
 }
 
+class Teams {
+  static readonly base = (projectId: number) => serverUrl(env) + '/teams?projectId=' + projectId;
+}
+
 export class Endpoint {
 
-  // Auth
   static readonly AUTH = Auth;
+  static readonly TEAMS = Teams;
 }
