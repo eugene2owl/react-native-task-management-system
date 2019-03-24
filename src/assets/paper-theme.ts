@@ -2,6 +2,7 @@
 import color from 'color';
 import { DefaultTheme } from "react-native-paper";
 import { Color } from "./color";
+import { Font } from "./fonts/font";
 
 const appPaperTheme = {
   ...DefaultTheme,
@@ -27,6 +28,13 @@ const appPaperTheme = {
       .alpha(0.5)
       .rgb()
       .string()
+  },
+  fonts: {
+    ...DefaultTheme.fonts,
+    regular: Font.SNIGLET,
+    medium: Font.SNIGLET,
+    light: Font.SNIGLET,
+    thin: Font.SNIGLET,
   }
 };
 

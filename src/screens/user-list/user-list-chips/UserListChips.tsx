@@ -3,6 +3,8 @@ import { View } from "react-native";
 import * as React from "react";
 import { Chip } from "react-native-paper";
 import { TaskStatus } from "../../../lib/models/task/task-status";
+import { appPaperTheme } from "../../../assets/paper-theme";
+import { Color } from "../../../assets/color";
 
 interface Props {
   tasksToPerform: number;
@@ -14,19 +16,22 @@ function buildChipLabel(count: number, status: string): string {
 }
 
 const UserListChips = (props: Props) => {
+  const chipTheme = JSON.parse(JSON.stringify(appPaperTheme));
+  chipTheme.colors.text = Color.SUN;
+
   const { tasksToPerform, tasksInProgress } = props;
 
   return (
     <View style={ styles.container }>
       { !!tasksToPerform &&
-        <Chip style={ [styles.toPerformChip, styles.chip] }>
-          { buildChipLabel(tasksToPerform, TaskStatus.TO_PERFORM) }
-        </Chip>
+      <Chip style={ [styles.toPerformChip, styles.chip] } theme={ chipTheme }>
+        { buildChipLabel(tasksToPerform, TaskStatus.TO_PERFORM) }
+      </Chip>
       }
       { !!tasksInProgress &&
-        <Chip style={ [styles.inProgressChip, styles.chip] }>
-          { buildChipLabel(tasksInProgress, TaskStatus.IN_PROGRESS) }
-        </Chip>
+      <Chip style={ [styles.inProgressChip, styles.chip] } theme={ chipTheme }>
+        { buildChipLabel(tasksInProgress, TaskStatus.IN_PROGRESS) }
+      </Chip>
       }
     </View>
   )

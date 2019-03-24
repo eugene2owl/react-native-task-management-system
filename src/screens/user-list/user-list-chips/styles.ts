@@ -15,6 +15,7 @@ export default StyleSheet.create({
     backgroundColor: Color.ASPHALT
   },
   toPerformChip: {
+    color: Color.SUN
   },
   inProgressChip: {
   }
