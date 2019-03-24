@@ -8,8 +8,12 @@ class Auth {
 }
 
 class Teams {
-  static readonly base = (projectId: number) => serverUrl(env) + '/teams?projectId=' + projectId;
-  static readonly create = serverUrl(env) + '/teams/new';
+  static readonly base = serverUrl(env) + '/teams';
+  static readonly baseByProjectId = (projectId: number) => Teams.base + '?projectId=' + projectId;
+
+  static readonly create = Teams.base + '/new';
+  static readonly createByProjectId = (projectId: number) => Teams.create + '?projectId=' + projectId;
+
 }
 
 export class Endpoint {

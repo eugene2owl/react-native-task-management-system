@@ -57,6 +57,8 @@ export class LoginScreen extends Component {
   }
 
   private processResponse(response: LoginResponse): void {
+    this.setState({ httpReqInProcess: false });
+
     if (response.error) {
       this.showOnStackBar(response.error.message);
       return;
@@ -66,6 +68,7 @@ export class LoginScreen extends Component {
   }
 
   private processError(error: HttpError): void {
+    this.setState({ httpReqInProcess: false });
     this.showOnStackBar(error.message);
   }
 
@@ -78,10 +81,7 @@ export class LoginScreen extends Component {
     return (
       <View style={ styles.container }>
         <ScreenHeader text="Login"/>
-        <SnackNotification
-          message={ this.state.snackBarMessage }
-          onDismiss={ () => this.showOnStackBar('') }
-        />
+
         <ScrollView
           style={ styles.scrollContainer }
           contentContainerStyle={ styles.scrollContainerContent }
@@ -97,7 +97,7 @@ export class LoginScreen extends Component {
               <TextInput
                 style={ styles.usernameControl }
                 mode="outlined"
-                label='Username'
+                label="Username"
                 value={ this.state.usernameControlValue }
                 onChangeText={ text => this.setState({ usernameControlValue: text }) }
               />
@@ -105,7 +105,7 @@ export class LoginScreen extends Component {
               <TextInput
                 style={ styles.passwordControl }
                 mode="outlined"
-                label='Password'
+                label="Password"
                 value={ this.state.passwordControlValue }
                 onChangeText={ text => this.setState({ passwordControlValue: text }) }
               />
@@ -125,6 +125,11 @@ export class LoginScreen extends Component {
 
           </View>
         </ScrollView>
+
+        <SnackNotification
+          message={ this.state.snackBarMessage }
+          onDismiss={ () => this.showOnStackBar('') }
+        />
       </View>
     );
   }

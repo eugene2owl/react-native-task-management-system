@@ -11,7 +11,7 @@ interface State {
   searchText: string;
 }
 
-export class TaskListScreen extends Component { // TODO add state and props separately
+export class TaskListScreen extends Component {
 
   state: State = {
     searchOpened: false,
