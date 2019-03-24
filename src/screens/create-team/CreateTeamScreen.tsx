@@ -10,6 +10,7 @@ import { teamService } from "../../lib/network/http-services/team/team-service";
 import { Button, Checkbox, List, RadioButton, TextInput } from "react-native-paper";
 import { Color } from "../../assets/color";
 import { UserCandidate } from "../../lib/models/user/user";
+import { ListAvatar } from "../../lib/components/icons/list-avatar/ListAvatar";
 
 interface State {
   candidates: UserCandidate[];
@@ -172,9 +173,7 @@ export class CreateTeamScreen extends Component { // TODO recieve user role from
                     <List.Item
                       title={ candidate.username }
                       style={ styles.candidatesControlListItem }
-                      left={ props =>
-                        <List.Icon { ...props } icon="search" color={ Color.LIGHT }/>
-                      }
+                      left={ () => <ListAvatar name={ candidate.username }/> }
                       onPress={ () => this.checkLeader(candidate.id) }
                       right={ () =>
                         <View style={ styles.candidatesControlListItemRight }>
@@ -208,9 +207,7 @@ export class CreateTeamScreen extends Component { // TODO recieve user role from
                     <List.Item
                       title={ candidate.username }
                       style={ styles.candidatesControlListItem }
-                      left={ props =>
-                        <List.Icon { ...props } icon="star" color={ Color.LIGHT }/>
-                      }
+                      left={ () => <ListAvatar name={ candidate.username }/> }
                       onPress={ () => this.checkMember(candidate.id) }
                       right={ () =>
                         <View style={ styles.candidatesControlListItemRight }>

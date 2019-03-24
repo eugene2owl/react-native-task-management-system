@@ -9,8 +9,8 @@ import { Color } from "../../assets/color";
 import { TeamListItem } from "../../lib/models/team/team-list";
 import { teamService } from "../../lib/network/http-services/team/team-service";
 import { HttpError } from "../../lib/network/common/http-error";
-import { SnackNotification } from "../../lib/components/snack-notification/SnackNotification";
 import { CentralSpinner } from "../../lib/components/central-spinner/CentralSpinner";
+import { SnackNotification } from "../../lib/components/snack-notification/SnackNotification";
 
 interface State {
   teams: TeamListItem[];
@@ -18,7 +18,7 @@ interface State {
   httpReqInProcess: boolean;
 }
 
-export class TeamListScreen extends Component {
+export class TeamListScreen extends Component { // TODO pull refresh feature
 
   state: State = {
     teams: [],
@@ -29,17 +29,13 @@ export class TeamListScreen extends Component {
   // @ts-ignore
   private navigation = this.props.navigation;
 
-  constructor(props: any) { // TODO move from constructor to needed method to reload each time user opens screen
-    // TODO OR!!!!!!!!!!!!!!!! Add reload feature
-    super(props);
-  }
-
   componentDidMount(): void {
     this.requestContent();
   }
 
   private requestContent(): void {
     this.setState({ httpReqInProcess: true });
+
     teamService.getAll(10) // TODO dehardcode project id
       .then((response: TeamListItem[]) => this.processResponse(response))
       .catch((error: HttpError) => this.processError(error))

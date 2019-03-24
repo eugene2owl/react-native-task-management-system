@@ -4,11 +4,11 @@ import * as React from "react";
 import { Color } from "../../../assets/color";
 import { ActivityIndicator, Text } from "react-native-paper";
 
-interface NavigationIconProps {
+interface Props {
   animating: boolean;
 }
 
-const CentralSpinner = (props: NavigationIconProps) => {
+const CentralSpinner = (props: Props) => {
   const { animating } = props;
 
   return (

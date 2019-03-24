@@ -23,7 +23,8 @@ export enum UsersDrawer {
 
 export enum UsersStack {
   USER_LIST = 'USER_LIST',
-  USER_DETAILS = 'USER_DETAILS'
+  USER_DETAILS = 'USER_DETAILS',
+  CREATE_USER = 'CREATE_USER'
 }
 
 export enum TeamsStack {

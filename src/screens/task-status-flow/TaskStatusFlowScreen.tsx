@@ -3,7 +3,7 @@ import * as React from "react";
 import { Component, ReactNode } from "react";
 import { Text, View } from "react-native";
 
-export class TaskStatusFlow extends Component {
+export class TaskStatusFlowScreen extends Component {
 
   render(): ReactNode {
     return (

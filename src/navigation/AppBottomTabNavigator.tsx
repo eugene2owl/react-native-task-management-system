@@ -6,7 +6,7 @@ import * as React from "react";
 import { AppTab } from "./routes";
 import { NavigationIcon } from "../lib/components/icons/navigation-icon/NavigationIcon";
 import { Color } from "../assets/color";
-import { TaskStatusFlow } from "../screens/task-status-flow/TaskStatusFlow";
+import { TaskStatusFlowScreen } from "../screens/task-status-flow/TaskStatusFlowScreen";
 import TaskStackNavigator from './TasksStackNavigator';
 import UsersDrawerNavigator from './UsersDrawerNavigator';
 
@@ -22,7 +22,7 @@ const routeConfigs = {
     }
   },
   [AppTab.TASK_STATUS_FLOW]: {
-    screen: TaskStatusFlow,
+    screen: TaskStatusFlowScreen,
     navigationOptions: {
       title: 'Status Flow',
       // @ts-ignore

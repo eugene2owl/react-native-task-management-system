@@ -13,11 +13,19 @@ class Teams {
 
   static readonly create = Teams.base + '/new';
   static readonly createByProjectId = (projectId: number) => Teams.create + '?projectId=' + projectId;
+}
 
+class Users {
+  static readonly base = serverUrl(env) + '/users';
+  static readonly baseByProjectId = (projectId: number) => Users.base + '?projectId=' + projectId;
+
+  static readonly create = Users.base + '/new';
+  static readonly createByProjectId = (projectId: number) => Users.create + '?projectId=' + projectId;
 }
 
 export class Endpoint {
 
   static readonly AUTH = Auth;
   static readonly TEAMS = Teams;
+  static readonly USERS = Users;
 }
