@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../assets/color";
+import { Font } from "../../assets/fonts/font";
 
 export default StyleSheet.create({
   container: {
@@ -15,11 +16,21 @@ export default StyleSheet.create({
   contentContainer: {
 
   },
-  listItemStyle: {
+  listItem: {
     height: 60
   },
-  listItemRightStyle: {
+  listItemRight: {
     paddingRight: 30,
     paddingTop: 10
+  },
+  listItemRightText: {
+    fontFamily: Font.SNIGLET,
+    color: Color.SUN
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
   }
 });

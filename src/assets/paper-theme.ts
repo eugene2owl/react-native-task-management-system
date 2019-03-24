@@ -10,7 +10,7 @@ const appPaperTheme = {
   colors: {
     ...DefaultTheme.colors,
     primary: Color.OCEAN,
-    accent: Color.FRANT,
+    accent: Color.SUN,
     background: Color.ENSIGN,
     surface: Color.ASPHALT,
     error: Color.BLOOD,

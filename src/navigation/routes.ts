@@ -28,5 +28,6 @@ export enum UsersStack {
 
 export enum TeamsStack {
   TEAM_LIST = 'TEAM_LIST',
-  USER_DETAILS = 'USER_DETAILS'
+  USER_DETAILS = 'USER_DETAILS',
+  CREATE_TEAM = 'CREATE_TEAM'
 }

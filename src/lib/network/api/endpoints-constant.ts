@@ -9,6 +9,7 @@ class Auth {
 
 class Teams {
   static readonly base = (projectId: number) => serverUrl(env) + '/teams?projectId=' + projectId;
+  static readonly create = serverUrl(env) + '/teams/new';
 }
 
 export class Endpoint {

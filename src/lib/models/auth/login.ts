@@ -1,6 +1,6 @@
 import { ErrorAbleResponse } from "../common/error-able-response";
 
-export interface LoginRequest {
+export interface Login {
   username: string;
   password: string;
 }

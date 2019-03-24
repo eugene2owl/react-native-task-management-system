@@ -4,20 +4,20 @@ import { Component, ReactNode } from "react";
 import { Image, ScrollView, View } from "react-native";
 import { AppAuthSwitch } from "../../navigation/routes";
 import { ScreenHeader } from "../../lib/components/headers/screen-header/ScreenHeader";
-import { Button, TextInput, Text } from 'react-native-paper';
+import { Button, TextInput } from 'react-native-paper';
 import { Color } from "../../assets/color";
 import { authService } from "../../lib/network/http-services/auth/auth-service";
-import { LoginRequest, LoginResponse } from "../../lib/models/auth/login-request";
+import { Login, LoginResponse } from "../../lib/models/auth/login";
 import AsyncStorage from '@react-native-community/async-storage';
 import { AsyncStorageKey } from "../../consts/AsyncStorageKey";
 import { HttpError } from "../../lib/network/common/http-error";
-import { SnackNotification } from "../../lib/components/headers/snack-notification/SnackNotification";
+import { SnackNotification } from "../../lib/components/snack-notification/SnackNotification";
 
 interface State {
   usernameControlValue: string;
   passwordControlValue: string;
   snackBarMessage: string;
-  loginRequestProcessing: boolean;
+  httpReqInProcess: boolean;
 }
 
 export class LoginScreen extends Component {
@@ -26,7 +26,7 @@ export class LoginScreen extends Component {
     usernameControlValue: '',
     passwordControlValue: '',
     snackBarMessage: '',
-    loginRequestProcessing: false
+    httpReqInProcess: false
   };
 
   // @ts-ignore
@@ -37,37 +37,35 @@ export class LoginScreen extends Component {
     this.navigation.navigate(AppAuthSwitch.APP);
   }
 
-  private get anyRequiredCredAbsent(): boolean {
+  private get anyRequiredFormFieldAbsent(): boolean {
     return !this.state.usernameControlValue || !this.state.passwordControlValue;
   }
 
-  private get enteredCredentials(): LoginRequest {
+  private get formData(): Login {
     return {
       username: this.state.usernameControlValue,
       password: this.state.passwordControlValue
     };
   }
 
-  private sendCredentials(): void {
-    this.setState({ loginRequestProcessing: true });
+  private sendFormData(): void {
+    this.setState({ httpReqInProcess: true });
 
-    authService.login(this.enteredCredentials)
+    authService.login(this.formData)
       .then((response: LoginResponse) => this.processResponse(response))
       .catch((error: HttpError) => this.processError(error));
   }
 
   private processResponse(response: LoginResponse): void {
-    this.setState({ loginRequestProcessing: false });
     if (response.error) {
       this.showOnStackBar(response.error.message);
-    } else {
-      AsyncStorage.setItem(AsyncStorageKey.JWT_TOKEN, response.token);
-      this.navigateToApp();
+      return;
     }
+    AsyncStorage.setItem(AsyncStorageKey.JWT_TOKEN, response.token);
+    this.navigateToApp();
   }
 
   private processError(error: HttpError): void {
-    this.setState({ loginRequestProcessing: false });
     this.showOnStackBar(error.message);
   }
 
@@ -84,7 +82,11 @@ export class LoginScreen extends Component {
           message={ this.state.snackBarMessage }
           onDismiss={ () => this.showOnStackBar('') }
         />
-        <ScrollView style={ styles.scrollContainer } contentContainerStyle={ styles.scrollContainerContent }>
+        <ScrollView
+          style={ styles.scrollContainer }
+          contentContainerStyle={ styles.scrollContainerContent }
+          keyboardShouldPersistTaps="always"
+        >
 
           <View style={ styles.contentContainer }>
             <View style={ styles.formContainer }>
@@ -114,9 +116,9 @@ export class LoginScreen extends Component {
               mode="contained"
               dark={ true }
               color={ Color.OCEAN }
-              disabled={ this.anyRequiredCredAbsent || this.state.loginRequestProcessing }
-              loading={ this.state.loginRequestProcessing }
-              onPress={ () => this.sendCredentials() }
+              disabled={ this.anyRequiredFormFieldAbsent || this.state.httpReqInProcess }
+              loading={ this.state.httpReqInProcess }
+              onPress={ () => this.sendFormData() }
             >
               Log in
             </Button>
