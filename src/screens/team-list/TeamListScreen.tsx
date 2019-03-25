@@ -1,7 +1,7 @@
 import styles from './styles';
 import * as React from "react";
 import { Component, ReactNode } from "react";
-import { ScrollView, View } from "react-native";
+import { RefreshControl, ScrollView, View } from "react-native";
 import { TeamsStack, UsersStack } from "../../navigation/routes";
 import { ScreenHeader } from "../../lib/components/headers/screen-header/ScreenHeader";
 import { FAB, List, Text } from 'react-native-paper';
@@ -15,6 +15,7 @@ import { SnackNotification } from "../../lib/components/snack-notification/Snack
 interface State {
   teams: TeamListItem[];
   snackBarMessage: string;
+  refreshing: boolean;
   httpReqInProcess: boolean;
 }
 
@@ -23,6 +24,7 @@ export class TeamListScreen extends Component { // TODO pull refresh feature
   state: State = {
     teams: [],
     snackBarMessage: '',
+    refreshing: false,
     httpReqInProcess: false
   };
 
@@ -33,13 +35,13 @@ export class TeamListScreen extends Component { // TODO pull refresh feature
     this.requestContent();
   }
 
-  private requestContent(): void {
-    this.setState({ httpReqInProcess: true });
+  private requestContent(byRefresh?: boolean): void {
+    this.setState(byRefresh ? { refreshing: true } : { httpReqInProcess: true });
 
     teamService.getAll(10) // TODO dehardcode project id
       .then((response: TeamListItem[]) => this.processResponse(response))
       .catch((error: HttpError) => this.processError(error))
-      .finally(() => this.setState({ httpReqInProcess: false }));
+      .finally(() => this.setState({ httpReqInProcess: false, refreshing: false }));
   }
 
   private processResponse(response: TeamListItem[]): void {
@@ -71,7 +73,16 @@ export class TeamListScreen extends Component { // TODO pull refresh feature
 
         <CentralSpinner animating={ this.state.httpReqInProcess }/>
 
-        <ScrollView style={ styles.scrollContainer } contentContainerStyle={ styles.scrollContainerContent }>
+        <ScrollView
+          style={ styles.scrollContainer }
+          contentContainerStyle={ styles.scrollContainerContent }
+          refreshControl={
+            <RefreshControl
+              refreshing={ this.state.refreshing }
+              onRefresh={ () => this.requestContent(true) }
+            />
+          }
+        >
           <View style={ styles.contentContainer }>
             <List.Section>
               { this.state.teams.map(team => (

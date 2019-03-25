@@ -6,6 +6,7 @@ import { Avatar } from "react-native-paper";
 
 interface Props {
   name: string;
+  size?: number;
 }
 
 function extractAvatarLabel(username: string): string {
@@ -14,11 +15,11 @@ function extractAvatarLabel(username: string): string {
 }
 
 const ListAvatar = (props: Props) => {
-  const { name } = props;
+  const { name, size } = props;
 
   return (
     <View style={ styles.container }>
-      <Avatar.Text size={ 37 } label={ extractAvatarLabel(name) }/>
+      <Avatar.Text size={ size || 37 } label={ extractAvatarLabel(name) }/>
     </View>
   )
 };

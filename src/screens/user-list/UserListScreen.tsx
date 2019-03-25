@@ -1,7 +1,7 @@
 import styles from './styles';
 import * as React from "react";
 import { Component, ReactNode } from "react";
-import { ScrollView, View } from "react-native";
+import { RefreshControl, ScrollView, View } from "react-native";
 import { UsersStack } from "../../navigation/routes";
 import { ScreenHeader } from "../../lib/components/headers/screen-header/ScreenHeader";
 import { FAB, List } from 'react-native-paper';
@@ -16,6 +16,7 @@ import { UserListChips } from "./user-list-chips/UserListChips";
 interface State {
   users: UserListItem[];
   snackBarMessage: string;
+  refreshing: boolean;
   httpReqInProcess: boolean;
 }
 
@@ -24,6 +25,7 @@ export class UserListScreen extends Component { // TODO pull refresh feature
   state: State = {
     users: [],
     snackBarMessage: '',
+    refreshing: false,
     httpReqInProcess: false
   };
 
@@ -34,13 +36,13 @@ export class UserListScreen extends Component { // TODO pull refresh feature
     this.requestContent();
   }
 
-  private requestContent(): void {
-    this.setState({ httpReqInProcess: true });
+  private requestContent(byRefresh?: boolean): void {
+    this.setState(byRefresh ? { refreshing: true } : { httpReqInProcess: true });
 
     userService.getAll(10) // TODO dehardcode project id
       .then((response: UserListItem[]) => this.processResponse(response))
       .catch((error: HttpError) => this.processError(error))
-      .finally(() => this.setState({ httpReqInProcess: false }));
+      .finally(() => this.setState({ httpReqInProcess: false, refreshing: false }));
   }
 
   private processResponse(response: UserListItem[]): void {
@@ -62,7 +64,7 @@ export class UserListScreen extends Component { // TODO pull refresh feature
   }
 
   private extractUsernameLabel(user: UserListItem): string {
-    const maxLength = (!user.tasksInProgress || !user.tasksToPerform) ? 50 : 13;
+    const maxLength = (!user.tasksInProgress || !user.tasksToPerform) ? 50 : 16;
     if (user.username.length < maxLength) {
       return user.username;
     }
@@ -79,7 +81,16 @@ export class UserListScreen extends Component { // TODO pull refresh feature
 
         <CentralSpinner animating={ this.state.httpReqInProcess }/>
 
-        <ScrollView style={ styles.scrollContainer } contentContainerStyle={ styles.scrollContainerContent }>
+        <ScrollView
+          style={ styles.scrollContainer }
+          contentContainerStyle={ styles.scrollContainerContent }
+          refreshControl={
+            <RefreshControl
+              refreshing={ this.state.refreshing }
+              onRefresh={ () => this.requestContent(true) }
+            />
+          }
+        >
           <View style={ styles.contentContainer }>
             <List.Section>
               { this.state.users.map(user => (

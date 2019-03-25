@@ -7,16 +7,17 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    marginLeft: -140
+    marginLeft: -95
   },
   chip: {
-    width: 110,
     marginHorizontal: 2,
     backgroundColor: Color.ASPHALT
   },
   toPerformChip: {
+    width: 80,
     color: Color.SUN
   },
   inProgressChip: {
+    width: 110,
   }
 });

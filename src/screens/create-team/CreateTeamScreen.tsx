@@ -140,6 +140,7 @@ export class CreateTeamScreen extends Component { // TODO recieve user role from
           style={ styles.scrollContainer }
           contentContainerStyle={ styles.scrollContainerContent }
           keyboardShouldPersistTaps="always"
+          removeClippedSubviews={ true }
         >
 
           <View style={ styles.contentContainer }>
