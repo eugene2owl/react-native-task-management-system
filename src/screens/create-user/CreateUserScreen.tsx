@@ -1,16 +1,14 @@
 import styles from './styles';
 import * as React from "react";
 import { Component, ReactNode } from "react";
-import { Image, PickerItem, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { ScreenHeader } from "../../lib/components/headers/screen-header/ScreenHeader";
 import { HttpError } from "../../lib/network/common/http-error";
 import { SnackNotification } from "../../lib/components/snack-notification/SnackNotification";
-import { TeamCreateRequest, TeamCreateResponse } from "../../lib/models/team/team-create";
-import { teamService } from "../../lib/network/http-services/team/team-service";
-import { Button, Checkbox, List, RadioButton, TextInput } from "react-native-paper";
+import { Button, HelperText, Text, TextInput } from "react-native-paper";
 import { Color } from "../../assets/color";
-import { UserCandidate, UserCreateRequest, UserListItem, UserPreCreateData } from "../../lib/models/user/user";
-import { ListAvatar } from "../../lib/components/icons/list-avatar/ListAvatar";
+import { UserCreateRequest, UserListItem, UserPreCreateData } from "../../lib/models/user/user";
+import { InitialsBasedAvatar } from "../../lib/components/icons/initials-based-avatar/InitialsBasedAvatar";
 import { Lookup } from "../../lib/models/common/Lookup";
 import { userService } from "../../lib/network/http-services/user/user-service";
 import { FormPickerControl } from "../../lib/components/form-controls/form-picker/FormPickerControl";
@@ -69,7 +67,9 @@ export class CreateUserScreen extends Component {
   }
 
   private get anyRequiredFormFieldAbsent(): boolean {
-    return !this.state.usernameControlValue || !this.state.passwordControlValue || !this.state.roleControlValue;
+    return !this.state.usernameControlValue
+      || this.state.passwordControlValue.length < 6
+      || !this.state.roleControlValue;
   }
 
   private get formData(): UserCreateRequest {
@@ -115,6 +115,10 @@ export class CreateUserScreen extends Component {
     return this.state.roles.map(lookup => ({ label: lookup.name, value: lookup.id }));
   }
 
+  private get tooEasyPassword(): boolean {
+    return this.state.passwordControlValue.length > 0 && this.state.passwordControlValue.length < 6;
+  }
+
   render(): ReactNode {
     const goBackIcon = { name: 'keyboard-arrow-left', onPress: () => this.navigation.goBack() };
 
@@ -132,16 +136,19 @@ export class CreateUserScreen extends Component {
           <View style={ styles.contentContainer }>
             <View style={ styles.formContainer }>
               <View style={ styles.logoContainer }>
-                <ListAvatar name={ this.state.usernameControlValue } size={ 150 }/>
+                <InitialsBasedAvatar name={ this.state.usernameControlValue } size={ 150 }/>
               </View>
 
               <TextInput
-                style={ styles.nameControl }
+                style={ styles.usernameControl }
                 mode="outlined"
                 label="Username"
                 value={ this.state.usernameControlValue }
                 onChangeText={ text => this.setState({ usernameControlValue: text }) }
               />
+              <HelperText visible={ this.state.usernameControlValue.length > 15 }>
+                <Text style={ styles.hint }>Long username might look not pretty later</Text>
+              </HelperText>
 
               <TextInput
                 style={ styles.passwordControl }
@@ -150,6 +157,9 @@ export class CreateUserScreen extends Component {
                 value={ this.state.passwordControlValue }
                 onChangeText={ text => this.setState({ passwordControlValue: text }) }
               />
+              <HelperText visible={ this.tooEasyPassword }>
+                <Text style={ styles.errorHint }>Password is too easy</Text>
+              </HelperText>
 
               <FormPickerControl
                 items={ this.teamPickerItems }

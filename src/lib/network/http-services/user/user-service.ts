@@ -9,6 +9,8 @@ class UserService extends BaseHttpService {
   create = (createRequest: UserCreateRequest) => this.post(Endpoint.USERS.create, createRequest);
 
   getPreCreateData = (projectId: number) => this.get(Endpoint.USERS.createByProjectId(projectId));
+
+  getDetails = (id: number) => this.get(Endpoint.USERS.details(id));
 }
 
 const userService = new UserService();

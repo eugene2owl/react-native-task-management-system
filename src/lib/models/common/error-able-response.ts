@@ -1,8 +1,8 @@
 export interface ErrorAbleResponse {
-  error: LoginResponseError;
+  error: HttpResponseError;
 }
 
-interface LoginResponseError {
+interface HttpResponseError {
   status: number;
   message: string;
 }

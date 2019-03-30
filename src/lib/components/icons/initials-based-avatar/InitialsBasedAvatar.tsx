@@ -14,7 +14,7 @@ function extractAvatarLabel(username: string): string {
   return words.map(word => word.charAt(0).toUpperCase()).join('').substring(0, 3);
 }
 
-const ListAvatar = (props: Props) => {
+const InitialsBasedAvatar = (props: Props) => {
   const { name, size } = props;
 
   return (
@@ -24,4 +24,4 @@ const ListAvatar = (props: Props) => {
   )
 };
 
-export { ListAvatar }
+export { InitialsBasedAvatar }

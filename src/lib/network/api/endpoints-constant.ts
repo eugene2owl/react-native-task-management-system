@@ -21,6 +21,8 @@ class Users {
 
   static readonly create = Users.base + '/new';
   static readonly createByProjectId = (projectId: number) => Users.create + '?projectId=' + projectId;
+
+  static readonly details = (id: number) => Users.base + '/details/' + id;
 }
 
 export class Endpoint {

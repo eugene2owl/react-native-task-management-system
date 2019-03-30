@@ -7,7 +7,7 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    marginLeft: -95
+    marginLeft: -110
   },
   chip: {
     marginHorizontal: 2,

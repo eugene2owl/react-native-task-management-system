@@ -24,11 +24,18 @@ export default StyleSheet.create({
     marginTop: 10,
     alignItems: 'center'
   },
-  nameControl: {
+  usernameControl: {
     marginVertical: 7,
   },
+  hint: {
+    fontSize: 13,
+    color: Color.OCEAN
+  },
   passwordControl: {
-    marginVertical: 7
+  },
+  errorHint: {
+    fontSize: 13,
+    color: Color.BLOOD
   },
   submitButton: {
     marginVertical: 10

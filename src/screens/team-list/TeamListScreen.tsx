@@ -62,7 +62,7 @@ export class TeamListScreen extends Component { // TODO pull refresh feature
     this.setState({ snackBarMessage: message })
   }
 
-  private navigateToUserDetails = () => this.navigation.navigate(UsersStack.USER_DETAILS); // TODO user or remove
+  private navigateToUserDetails = (id: number) => this.navigation.navigate(UsersStack.USER_DETAILS, { id: id });
   private navigateToCreateTeam = () => this.navigation.navigate(TeamsStack.CREATE_TEAM);
 
 
@@ -105,6 +105,7 @@ export class TeamListScreen extends Component { // TODO pull refresh feature
                           </View>
                         ) }
                         description={ member.timeLogged }
+                        onPress={ () => this.navigateToUserDetails(member.id) }
                         key={ member.id }
                       />
                     )

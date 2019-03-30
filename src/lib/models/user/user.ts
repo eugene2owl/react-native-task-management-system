@@ -26,3 +26,10 @@ export interface UserListItem extends IdentifiableModel, ErrorAbleResponse {
   tasksToPerform: number;
   tasksInProgress: number;
 }
+
+export interface UserDetails extends IdentifiableModel, ErrorAbleResponse {
+  username: string;
+  teams: string[];
+  role: string;
+  timeLogged: string;
+}

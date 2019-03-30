@@ -10,7 +10,7 @@ import { CentralSpinner } from "../../lib/components/central-spinner/CentralSpin
 import { SnackNotification } from "../../lib/components/snack-notification/SnackNotification";
 import { userService } from "../../lib/network/http-services/user/user-service";
 import { UserListItem } from "../../lib/models/user/user";
-import { ListAvatar } from "../../lib/components/icons/list-avatar/ListAvatar";
+import { InitialsBasedAvatar } from "../../lib/components/icons/initials-based-avatar/InitialsBasedAvatar";
 import { UserListChips } from "./user-list-chips/UserListChips";
 
 interface State {
@@ -71,7 +71,7 @@ export class UserListScreen extends Component { // TODO pull refresh feature
     return user.username.substring(0, maxLength - 2).concat('...');
   }
 
-  private navigateToUserDetails = () => this.navigation.navigate(UsersStack.USER_DETAILS); // TODO user or remove
+  private navigateToUserDetails = (id: number) => this.navigation.navigate(UsersStack.USER_DETAILS, { id: id });
   private navigateToCreateUser = () => this.navigation.navigate(UsersStack.CREATE_USER);
 
   render(): ReactNode {
@@ -97,9 +97,10 @@ export class UserListScreen extends Component { // TODO pull refresh feature
                   <List.Item
                     title={ this.extractUsernameLabel(user) }
                     style={ styles.listItem }
-                    left={ () => <ListAvatar name={ user.username }/> }
+                    left={ () => <InitialsBasedAvatar name={ user.username }/> }
                     right={ () =>
                       <UserListChips tasksToPerform={ user.tasksToPerform } tasksInProgress={ user.tasksInProgress }/> }
+                    onPress={ () => this.navigateToUserDetails(user.id) }
                     key={ user.id }
                   />
                 )
