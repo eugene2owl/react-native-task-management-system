@@ -1,6 +1,6 @@
-import { Endpoint } from "../../api/endpoints-constant";
-import { BaseHttpService } from "../common/base-http-service";
-import { TeamCreateRequest } from "../../../models/team/team-create";
+import { Endpoint } from "../api/endpoints-constant";
+import { BaseHttpService } from "./common/base-http-service";
+import { TeamCreateRequest } from "../../models/team/team-create";
 
 class TeamService extends BaseHttpService {
 

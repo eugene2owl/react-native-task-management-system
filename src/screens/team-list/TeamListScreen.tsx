@@ -7,7 +7,7 @@ import { ScreenHeader } from "../../lib/components/headers/screen-header/ScreenH
 import { FAB, List, Text } from 'react-native-paper';
 import { Color } from "../../assets/color";
 import { TeamListItem } from "../../lib/models/team/team-list";
-import { teamService } from "../../lib/network/http-services/team/team-service";
+import { teamService } from "../../lib/network/http-services/team-service";
 import { HttpError } from "../../lib/network/common/http-error";
 import { CentralSpinner } from "../../lib/components/central-spinner/CentralSpinner";
 import { SnackNotification } from "../../lib/components/snack-notification/SnackNotification";
@@ -19,7 +19,7 @@ interface State {
   httpReqInProcess: boolean;
 }
 
-export class TeamListScreen extends Component { // TODO pull refresh feature
+export class TeamListScreen extends Component {
 
   state: State = {
     teams: [],

@@ -6,7 +6,7 @@ import { AppAuthSwitch } from "../../navigation/routes";
 import { ScreenHeader } from "../../lib/components/headers/screen-header/ScreenHeader";
 import { Button, TextInput } from 'react-native-paper';
 import { Color } from "../../assets/color";
-import { authService } from "../../lib/network/http-services/auth/auth-service";
+import { authService } from "../../lib/network/http-services/auth-service";
 import { Login, LoginResponse } from "../../lib/models/auth/login";
 import AsyncStorage from '@react-native-community/async-storage';
 import { AsyncStorageKey } from "../../consts/AsyncStorageKey";

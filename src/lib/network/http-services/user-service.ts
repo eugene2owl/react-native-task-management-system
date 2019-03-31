@@ -1,6 +1,6 @@
-import { Endpoint } from "../../api/endpoints-constant";
-import { BaseHttpService } from "../common/base-http-service";
-import { UserCreateRequest } from "../../../models/user/user";
+import { Endpoint } from "../api/endpoints-constant";
+import { BaseHttpService } from "./common/base-http-service";
+import { UserCreateRequest } from "../../models/user/user";
 
 class UserService extends BaseHttpService {
 

@@ -4,6 +4,7 @@ import { Font } from "../../../../assets/fonts/font";
 
 export default StyleSheet.create({
   container: {
+    width: '60%',
     marginVertical: 7,
     backgroundColor: Color.ASPHALT,
     padding: 5,
@@ -17,7 +18,6 @@ export default StyleSheet.create({
     top: -11
   },
   picker: {
-    width: '100%',
     height: 55,
     backgroundColor: Color.ASPHALT,
     color: Color.SUN,

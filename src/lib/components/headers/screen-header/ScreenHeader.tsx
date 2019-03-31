@@ -12,7 +12,7 @@ export interface ScreenHeaderIcon {
 
 interface Props {
   text: string;
-  leftIcon?: ScreenHeaderIcon;
+  leftIcon?: ScreenHeaderIcon | null;
   rightIcon?: ScreenHeaderIcon;
 }
 

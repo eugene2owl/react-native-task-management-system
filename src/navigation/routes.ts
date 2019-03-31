@@ -7,13 +7,15 @@ export enum AppAuthSwitch {
 export enum AppTab {
   TASKS = 'TASKS',
   TASK_STATUS_FLOW = 'TASK_STATUS_FLOW',
-  USERS = 'USERS'
+  USERS = 'USERS',
+  PROFILE = 'PROFILE'
 }
 
 export enum TasksStack {
   TASK_LIST = 'TASK_LIST',
   TASK_DETAILS = 'TASK_DETAILS',
-  TASK_TIME_LOG = 'TASK_TIME_LOG'
+  TASK_TIME_LOG = 'TASK_TIME_LOG',
+  CREATE_TASK = 'CREATE_TASK'
 }
 
 export enum UsersDrawer {

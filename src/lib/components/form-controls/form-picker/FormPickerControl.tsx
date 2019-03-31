@@ -9,6 +9,8 @@ import { Color } from "../../../../assets/color";
 interface Props {
   items: FormPickerItem[];
   onValueChange: (itemValue: number) => void;
+  defaultItem?: FormPickerItem;
+  label: string;
 }
 
 interface State {
@@ -29,11 +31,12 @@ export class FormPickerControl extends Component<Props> {
   }
 
   render() {
-    const { items } = this.props;
-    items.unshift(this.defaultItem);
+    const { items, defaultItem, label } = this.props;
+    items.unshift(defaultItem || this.defaultItem);
 
     return (
       <View style={ styles.container }>
+        <Text style={ styles.pickerLabel }>{ label }</Text>
         <Picker
           selectedValue={ this.state.selectedItemValue }
           style={ styles.picker }

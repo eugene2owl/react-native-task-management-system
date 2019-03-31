@@ -6,7 +6,7 @@ import { ScreenHeader } from "../../lib/components/headers/screen-header/ScreenH
 import { HttpError } from "../../lib/network/common/http-error";
 import { SnackNotification } from "../../lib/components/snack-notification/SnackNotification";
 import { TeamCreateRequest, TeamCreateResponse } from "../../lib/models/team/team-create";
-import { teamService } from "../../lib/network/http-services/team/team-service";
+import { teamService } from "../../lib/network/http-services/team-service";
 import { Button, Checkbox, List, RadioButton, TextInput } from "react-native-paper";
 import { Color } from "../../assets/color";
 import { UserCandidate } from "../../lib/models/user/user";

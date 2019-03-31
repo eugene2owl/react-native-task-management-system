@@ -8,7 +8,7 @@ import { FAB, List } from 'react-native-paper';
 import { HttpError } from "../../lib/network/common/http-error";
 import { CentralSpinner } from "../../lib/components/central-spinner/CentralSpinner";
 import { SnackNotification } from "../../lib/components/snack-notification/SnackNotification";
-import { userService } from "../../lib/network/http-services/user/user-service";
+import { userService } from "../../lib/network/http-services/user-service";
 import { UserListItem } from "../../lib/models/user/user";
 import { InitialsBasedAvatar } from "../../lib/components/icons/initials-based-avatar/InitialsBasedAvatar";
 import { UserListChips } from "./user-list-chips/UserListChips";

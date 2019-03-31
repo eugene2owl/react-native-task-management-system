@@ -25,12 +25,12 @@ const UserListChips = (props: Props) => {
     <View style={ styles.container }>
       { !!tasksToPerform &&
       <Chip style={ [styles.toPerformChip, styles.chip] } theme={ chipTheme }>
-        { buildChipLabel(tasksToPerform, TaskStatus.TO_PERFORM) }
+        { buildChipLabel(tasksToPerform, TaskStatus.value.TO_PERFORM.label) }
       </Chip>
       }
       { !!tasksInProgress &&
       <Chip style={ [styles.inProgressChip, styles.chip] } theme={ chipTheme }>
-        { buildChipLabel(tasksInProgress, TaskStatus.IN_PROGRESS) }
+        { buildChipLabel(tasksInProgress, TaskStatus.value.IN_PROGRESS.label) }
       </Chip>
       }
     </View>

@@ -9,6 +9,7 @@ import { Color } from "../assets/color";
 import { TaskStatusFlowScreen } from "../screens/task-status-flow/TaskStatusFlowScreen";
 import TaskStackNavigator from './TasksStackNavigator';
 import UsersDrawerNavigator from './UsersDrawerNavigator';
+import { UserDetailsScreen } from "../screens/user-details/UserDetailsScreen";
 
 const routeConfigs = {
   [AppTab.TASKS]: {
@@ -41,6 +42,16 @@ const routeConfigs = {
       )
     }
   },
+  [AppTab.PROFILE]: {
+    screen: UserDetailsScreen,
+    navigationOptions: {
+      title: 'Profile',
+      // @ts-ignore
+      tabBarIcon: ({ focused, tintColor }) => (
+        <NavigationIcon name="home" distent={ focused } tintColor={ tintColor }/>
+      )
+    }
+  }
 };
 
 const navigatorConfig = {
@@ -49,7 +60,7 @@ const navigatorConfig = {
   activeColor: Color.OCEAN,
   inactiveColor: Color.LIGHT,
   barStyle: { backgroundColor: Color.CARBON },
-  initialRouteName: AppTab.TASKS, // TODO think of profile tab and first place for it
+  initialRouteName: AppTab.TASKS,
   backBehavior: 'none'
 };
 

@@ -25,9 +25,21 @@ class Users {
   static readonly details = (id: number) => Users.base + '/details/' + id;
 }
 
+class Tasks {
+  static readonly base = serverUrl(env) + '/tasks';
+  static readonly baseByProjectId = (projectId: number, search: string, status: number, expiredOnly: boolean) =>
+    `${ Tasks.base }?projectId=${ projectId }&pattern=${ search }&taskStatusId=${ status ? status : '' }&expiredOnly=${expiredOnly ? 'true' : ''}`;
+
+  static readonly create = Tasks.base + '/new';
+  static readonly createByProjectId = (projectId: number) => Tasks.create + '?projectId=' + projectId;
+
+  static readonly details = (id: number) => Tasks.base + '/details/' + id;
+}
+
 export class Endpoint {
 
   static readonly AUTH = Auth;
   static readonly TEAMS = Teams;
   static readonly USERS = Users;
+  static readonly TASKS = Tasks;
 }

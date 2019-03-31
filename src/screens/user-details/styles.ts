@@ -24,8 +24,7 @@ export default StyleSheet.create({
     flex: 1
   },
   usernameLabel: {
-    fontSize: 30,
-    fontFamily: Font.SNIGLET_EXTRA_BOLD,
+    fontSize: 35
   },
   roleLabel: {
     fontSize: 25,

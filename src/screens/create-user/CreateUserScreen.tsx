@@ -10,7 +10,7 @@ import { Color } from "../../assets/color";
 import { UserCreateRequest, UserListItem, UserPreCreateData } from "../../lib/models/user/user";
 import { InitialsBasedAvatar } from "../../lib/components/icons/initials-based-avatar/InitialsBasedAvatar";
 import { Lookup } from "../../lib/models/common/Lookup";
-import { userService } from "../../lib/network/http-services/user/user-service";
+import { userService } from "../../lib/network/http-services/user-service";
 import { FormPickerControl } from "../../lib/components/form-controls/form-picker/FormPickerControl";
 import { FormPickerItem } from "../../lib/components/form-controls/form-picker/utils/form-picker-item";
 
@@ -164,11 +164,13 @@ export class CreateUserScreen extends Component {
               <FormPickerControl
                 items={ this.teamPickerItems }
                 onValueChange={ (itemValue: number) => this.setState({ teamControlValue: itemValue }) }
+                label="Team"
               />
 
               <FormPickerControl
                 items={ this.rolePickerItems }
                 onValueChange={ (itemValue: number) => this.setState({ roleControlValue: itemValue }) }
+                label="Role"
               />
             </View>
 
