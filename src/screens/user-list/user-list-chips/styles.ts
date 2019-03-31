@@ -4,12 +4,12 @@ import { Color } from "../../../assets/color";
 export default StyleSheet.create({
   container: {
     flex: 1,
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    marginLeft: -110
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    marginLeft: -120
   },
   chip: {
+    height: 32,
     marginHorizontal: 2,
     backgroundColor: Color.ASPHALT
   },

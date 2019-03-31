@@ -13,7 +13,7 @@ export interface ScreenHeaderIcon {
 interface Props {
   text: string;
   leftIcon?: ScreenHeaderIcon | null;
-  rightIcon?: ScreenHeaderIcon;
+  rightIcon?: ScreenHeaderIcon | null;
 }
 
 const ScreenHeader = (props: Props) => {

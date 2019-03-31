@@ -90,7 +90,7 @@ export class UserDetailsScreen extends Component {
         <ScreenHeader
           text={ this.state.id ? 'User Details' : 'Profile' }
           leftIcon={ this.state.id ? goBackIcon : null }
-          rightIcon={ logOutIcon }
+          rightIcon={ !this.state.id ? logOutIcon : null }
         />
 
         <CentralSpinner animating={ this.state.httpReqInProcess }/>
