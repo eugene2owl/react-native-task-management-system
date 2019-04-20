@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Color } from "../../assets/color";
+import { Font } from "../../assets/fonts/font";
 
 export default StyleSheet.create({
   container: {
@@ -37,7 +38,8 @@ export default StyleSheet.create({
     height: 60
   },
   listItemRight: {
-    paddingRight: 30,
+    alignItems: 'flex-end',
+    paddingRight: 10,
     paddingTop: 10
   },
   listItemRightTextStatus: {
@@ -45,6 +47,9 @@ export default StyleSheet.create({
   },
   listItemRightTextDeadline: {
     color: Color.SUN
+  },
+  listItemRightTextDeadlineExpired: {
+    color: Color.BLOOD
   },
   fab: {
     position: 'absolute',

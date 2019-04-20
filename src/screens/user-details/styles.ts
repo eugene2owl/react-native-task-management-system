@@ -18,7 +18,7 @@ export default StyleSheet.create({
   },
   avatarContainer: {
     flexDirection: 'row',
-    padding: 8
+    padding: 18
   },
   descriptionContainer: {
     flex: 1

@@ -84,6 +84,12 @@ export class TaskListScreen extends Component {
     return keys.map(key => ({ label: TaskStatus.value[key].label, value: TaskStatus.value[key].id }));
   }
 
+  private isExpired(dateString: string): boolean {
+    const pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
+    const date = new Date(dateString.replace(pattern,'$3-$2-$1'));
+    return date < new Date();
+  }
+
   render(): ReactNode { // TODO add executor list and redirection
     const openSearchIcon = { name: 'search', onPress: () => this.setState({ searchOpened: true }) };
     const searchIcon = {
@@ -104,30 +110,34 @@ export class TaskListScreen extends Component {
 
         <CentralSpinner animating={ this.state.httpReqInProcess }/>
 
-        <View style={ styles.filterPanel }>
-          <View style={ styles.formPickerControlContainer }>
-            <FormPickerControl
-              items={ this.statusFilterValues }
-              onValueChange={ (itemValue: number) => {
-                this.state.statusControlValue = itemValue;
-                this.requestContent();
-              } }
-              defaultItem={ { label: 'All', value: 0 } }
-              label="Status"
-            />
+        { this.state.searchOpened ?
+          <View style={ styles.filterPanel }>
+            <View style={ styles.formPickerControlContainer }>
+              <FormPickerControl
+                items={ this.statusFilterValues }
+                onValueChange={ (itemValue: number) => {
+                  this.state.statusControlValue = itemValue;
+                  this.requestContent();
+                } }
+                defaultItem={ { label: 'All', value: 0 } }
+                label="Status"
+              />
+            </View>
+            <View style={ styles.switchContainer }>
+              <Text
+                style={ styles.switchLabel }>{ `Overdue only (${ this.state.expiredOnlyControlValue ? 'on' : 'off' })` }</Text>
+              <Switch
+                value={ this.state.expiredOnlyControlValue }
+                onValueChange={ () => {
+                  this.state.expiredOnlyControlValue = !this.state.expiredOnlyControlValue;
+                  this.requestContent();
+                } }
+              />
+            </View>
           </View>
-          <View style={ styles.switchContainer }>
-            <Text
-              style={ styles.switchLabel }>{ `Expired only(${ this.state.expiredOnlyControlValue ? 'on' : 'off' })` }</Text>
-            <Switch
-              value={ this.state.expiredOnlyControlValue }
-              onValueChange={ () => {
-                this.state.expiredOnlyControlValue = !this.state.expiredOnlyControlValue;
-                this.requestContent();
-              } }
-            />
-          </View>
-        </View>
+          :
+          null
+        }
 
         <ScrollView
           style={ styles.scrollContainer }
@@ -155,7 +165,9 @@ export class TaskListScreen extends Component {
                     right={ () => (
                       <View style={ styles.listItemRight }>
                         <Text style={ styles.listItemRightTextStatus }>{ task.status }</Text>
-                        <Text style={ styles.listItemRightTextDeadline }>{ task.deadline }</Text>
+                        <Text style={ this.isExpired(task.deadline) ? styles.listItemRightTextDeadlineExpired : styles.listItemRightTextDeadline }>
+                          { task.deadline }
+                        </Text>
                       </View>
                     ) }
                     description={ task.assignedTo.name ? 'Assigned to ' + task.assignedTo.name : '' }

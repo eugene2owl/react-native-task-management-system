@@ -99,7 +99,7 @@ export class UserDetailsScreen extends Component {
 
           <View style={ styles.baseDetailsZone }>
             <View style={ styles.avatarContainer }>
-              <InitialsBasedAvatar name={ this.state.userDetails.username } size={ 150 }/>
+              <InitialsBasedAvatar name={ this.state.userDetails.username } size={ 130 }/>
             </View>
 
             <View style={ styles.descriptionContainer }>

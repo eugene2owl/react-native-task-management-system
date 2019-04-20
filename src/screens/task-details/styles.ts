@@ -38,7 +38,7 @@ export default StyleSheet.create({
   },
   userChipsInfoContainer: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     paddingVertical: 10
   },
   chipContainer: {

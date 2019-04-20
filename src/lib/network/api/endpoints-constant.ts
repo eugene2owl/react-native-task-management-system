@@ -34,6 +34,9 @@ class Tasks {
   static readonly createByProjectId = (projectId: number) => Tasks.create + '?projectId=' + projectId;
 
   static readonly details = (id: number) => Tasks.base + '/details/' + id;
+
+  static readonly timeline = (search: string) => Tasks.base + '/timeline?pattern=' + search;
+  static readonly timelog = (id: number) => Tasks.base + '/timelog/' + id;
 }
 
 export class Endpoint {

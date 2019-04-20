@@ -77,10 +77,7 @@ export class TaskDetailsScreen extends Component {
     this.setState({ snackBarMessage: message })
   }
 
-  private navigateToTimeLog(): void {
-    this.navigation.navigate(TasksStack.TASK_TIME_LOG);
-  }
-
+  private navigateToTimeLog = (id: number): void => this.navigation.navigate(TasksStack.TASK_TIME_LOG, { id: id });
   private navigateToUserDetails = (id: number) => this.navigation.navigate(UsersStack.USER_DETAILS, { id: id });
   private navigateToTaskDetails = (id: number) => this.navigation.navigate(TasksStack.TASK_DETAILS, { id: id });
 
@@ -100,7 +97,10 @@ export class TaskDetailsScreen extends Component {
   }
 
   render(): ReactNode {
+    const details = this.state.taskDetails;
+
     const goBackIcon = { name: 'keyboard-arrow-left', onPress: () => this.navigation.goBack() };
+    const timelogIcon = { name: 'query-builder', onPress: () => this.navigateToTimeLog(this.state.id) };
 
     const chipThemeSun = JSON.parse(JSON.stringify(appPaperTheme));
     chipThemeSun.colors.text = Color.SUN;
@@ -108,11 +108,9 @@ export class TaskDetailsScreen extends Component {
     const chipThemeOcean = JSON.parse(JSON.stringify(appPaperTheme));
     chipThemeOcean.colors.text = Color.OCEAN;
 
-    const details = this.state.taskDetails;
-
     return (
       <View style={ styles.container }>
-        <ScreenHeader text="Task Details" leftIcon={ goBackIcon }/>
+        <ScreenHeader text="Task Details" leftIcon={ goBackIcon } rightIcon={ timelogIcon }/>
 
         <View style={ styles.contentContainer }>
           <View style={ styles.baseInfoContainer }>
@@ -132,7 +130,7 @@ export class TaskDetailsScreen extends Component {
 
           <View style={ styles.userChipsInfoContainer }>
             <View style={ styles.chipContainer }>
-              <Text>Create by</Text>
+              <Text>Created by</Text>
               <Chip
                 theme={ chipThemeOcean }
                 mode="outlined"
@@ -203,11 +201,6 @@ export class TaskDetailsScreen extends Component {
             </View>
           }
         </View>
-
-        <Button
-          title="Navigate to Task Time Log Screen"
-          onPress={ () => this.navigateToTimeLog() }
-        />
       </View>
     );
   }

@@ -67,9 +67,11 @@ export class TeamListScreen extends Component {
 
 
   render(): ReactNode {
+    const sideNavIcon = { name: 'first-page', onPress: () => this.navigation.openDrawer() };
+
     return (
       <View style={ styles.container }>
-        <ScreenHeader text="Team List"/>
+        <ScreenHeader text="Team List" rightIcon={ sideNavIcon }/>
 
         <CentralSpinner animating={ this.state.httpReqInProcess }/>
 

@@ -75,9 +75,11 @@ export class UserListScreen extends Component { // TODO pull refresh feature
   private navigateToCreateUser = () => this.navigation.navigate(UsersStack.CREATE_USER);
 
   render(): ReactNode {
+    const sideNavIcon = { name: 'first-page', onPress: () => this.navigation.openDrawer() };
+
     return (
       <View style={ styles.container }>
-        <ScreenHeader text="User List"/>
+        <ScreenHeader text="User List" rightIcon={ sideNavIcon }/>
 
         <CentralSpinner animating={ this.state.httpReqInProcess }/>
 
