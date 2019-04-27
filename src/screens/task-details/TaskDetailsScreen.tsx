@@ -1,7 +1,7 @@
 import styles from './styles';
 import * as React from "react";
 import { Component, ReactNode } from "react";
-import { Button, View } from "react-native";
+import { View } from "react-native";
 import { TasksStack, UsersStack } from "../../navigation/routes";
 import { ScreenHeader } from "../../lib/components/headers/screen-header/ScreenHeader";
 import { TaskDetails } from "../../lib/models/task/task";
@@ -11,6 +11,9 @@ import { Chip, Text } from "react-native-paper";
 import { Lookup } from "../../lib/models/common/Lookup";
 import { appPaperTheme } from "../../assets/paper-theme";
 import { Color } from "../../assets/color";
+import { SingleOptionDialog } from "../../lib/components/dialogs/single-option-dialog/SingleOptionDialog";
+import { TaskStatus } from "../../lib/models/task/task-status";
+import { PickerItem } from "react-native-material-dialog";
 
 const defaultTaskDetails: TaskDetails = {
   id: 0,
@@ -29,7 +32,8 @@ const defaultTaskDetails: TaskDetails = {
 };
 
 interface State {
-  id: number,
+  id: number;
+  statusDialogVisible: boolean;
   taskDetails: TaskDetails;
   snackBarMessage: string;
   httpReqInProcess: boolean;
@@ -39,6 +43,7 @@ export class TaskDetailsScreen extends Component {
 
   state: State = {
     id: 0,
+    statusDialogVisible: false,
     taskDetails: defaultTaskDetails,
     snackBarMessage: '',
     httpReqInProcess: false
@@ -56,12 +61,12 @@ export class TaskDetailsScreen extends Component {
     this.setState({ httpReqInProcess: true });
 
     taskService.getDetails(this.state.id)
-      .then((response: TaskDetails) => this.processResponse(response))
+      .then((response: TaskDetails) => this.processGetResponse(response))
       .catch((error: HttpError) => this.processError(error))
       .finally(() => this.setState({ httpReqInProcess: false }));
   }
 
-  private processResponse(response: TaskDetails): void {
+  private processGetResponse(response: TaskDetails): void {
     if (response.error) {
       this.showOnStackBar(response.error.message);
       return;
@@ -69,13 +74,15 @@ export class TaskDetailsScreen extends Component {
     this.setState({ taskDetails: response });
   }
 
-  private processError(error: HttpError): void {
-    this.showOnStackBar(error.message);
+  private processPostResponse(status: PickerItem): void {
+    this.showOnStackBar('Status successfully changed!');
+    this.state.taskDetails.status = status.label;
+    this.setState({ taskDetails: this.state.taskDetails });
   }
 
-  private showOnStackBar(message: string): void {
-    this.setState({ snackBarMessage: message })
-  }
+  private processError = (error: HttpError): void => this.showOnStackBar(error.message);
+
+  private showOnStackBar = (message: string) => this.setState({ snackBarMessage: message });
 
   private navigateToTimeLog = (id: number): void => this.navigation.navigate(TasksStack.TASK_TIME_LOG, { id: id });
   private navigateToUserDetails = (id: number) => this.navigation.navigate(UsersStack.USER_DETAILS, { id: id });
@@ -96,6 +103,40 @@ export class TaskDetailsScreen extends Component {
     return !!this.state.taskDetails.children && !!this.state.taskDetails.children.length;
   }
 
+  private get statusValues(): PickerItem[] {
+    const keys = Object.keys(TaskStatus.value);
+    // @ts-ignore
+    return keys.map(key => ({ label: TaskStatus.value[key].label, value: TaskStatus.value[key].id }));
+  }
+
+  private get currentStatusValue(): PickerItem {
+    // @ts-ignore
+    return this.statusValues.find(status => status.value === this.currentStatusId);
+  }
+
+  private get currentStatusId(): number {
+    try {
+      const keys = Object.keys(TaskStatus.value).map(key => key.replace(/_/g, ' '));
+
+      const key = (keys.find(key => key === this.state.taskDetails.status) as string).replace(/ /g, '_');
+      // @ts-ignore
+      return TaskStatus.value[key].id;
+    } catch (e) {
+      return 1;
+    }
+  }
+
+  private sendStatus(status: PickerItem): void {
+    this.closeStatusDialog();
+    taskService.setStatus(this.state.id, +status.value, 10) // TODO dehardcode user id
+      .then((response: any) => this.processPostResponse(status))
+      .catch((error: HttpError) => this.processError(error))
+      .finally(() => this.setState({ httpReqInProcess: false }));
+  }
+
+  private openStatusDialog = () => this.setState({ statusDialogVisible: true });
+  private closeStatusDialog = () => this.setState({ statusDialogVisible: false });
+
   render(): ReactNode {
     const details = this.state.taskDetails;
 
@@ -112,6 +153,15 @@ export class TaskDetailsScreen extends Component {
       <View style={ styles.container }>
         <ScreenHeader text="Task Details" leftIcon={ goBackIcon } rightIcon={ timelogIcon }/>
 
+        <SingleOptionDialog
+          title="Set new status"
+          items={ this.statusValues }
+          selectedItem={ this.currentStatusValue }
+          visible={ this.state.statusDialogVisible }
+          onOk={ (selection: PickerItem) => this.sendStatus(selection) }
+          onCancel={ this.closeStatusDialog }
+        />
+
         <View style={ styles.contentContainer }>
           <View style={ styles.baseInfoContainer }>
             <Text style={ styles.nameLabel }>{ details.name }</Text>
@@ -122,7 +172,7 @@ export class TaskDetailsScreen extends Component {
           </View>
 
           <View style={ styles.statusInfoContainer }>
-            <Text style={ styles.statusLabel }>{ details.status }</Text>
+            <Text style={ styles.statusLabel } onPress={ this.openStatusDialog }>{ details.status }</Text>
             { !!details.deadline &&
             <Text style={ styles.deadlineLabel }>Deadline: { details.deadline }</Text>
             }
@@ -195,10 +245,10 @@ export class TaskDetailsScreen extends Component {
           }
 
           { !!details.description &&
-            <View style={ styles.descriptionContainer }>
-              <Text>Description</Text>
-              <Text style={ styles.description }>{ details.description }</Text>
-            </View>
+          <View style={ styles.descriptionContainer }>
+            <Text>Description</Text>
+            <Text style={ styles.description }>{ details.description }</Text>
+          </View>
           }
         </View>
       </View>

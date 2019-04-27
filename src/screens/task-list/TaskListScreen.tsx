@@ -84,7 +84,10 @@ export class TaskListScreen extends Component {
     return keys.map(key => ({ label: TaskStatus.value[key].label, value: TaskStatus.value[key].id }));
   }
 
-  private isExpired(dateString: string): boolean {
+  private isExpired(dateString: string, status: string): boolean {
+    if (status !== 'IN PROGRESS' && status !== 'TO PERFORM') {
+      return false;
+    }
     const pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
     const date = new Date(dateString.replace(pattern,'$3-$2-$1'));
     return date < new Date();
@@ -165,7 +168,7 @@ export class TaskListScreen extends Component {
                     right={ () => (
                       <View style={ styles.listItemRight }>
                         <Text style={ styles.listItemRightTextStatus }>{ task.status }</Text>
-                        <Text style={ this.isExpired(task.deadline) ? styles.listItemRightTextDeadlineExpired : styles.listItemRightTextDeadline }>
+                        <Text style={ this.isExpired(task.deadline, task.status) ? styles.listItemRightTextDeadlineExpired : styles.listItemRightTextDeadline }>
                           { task.deadline }
                         </Text>
                       </View>

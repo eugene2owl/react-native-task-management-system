@@ -19,6 +19,12 @@ class TaskService extends BaseHttpService {
   getTimelog = (id: number) => this.get(Endpoint.TASKS.timelog(id));
 
   addTimelog = (id: number, body: TaskTimelogRequest) => this.post(Endpoint.TASKS.timelog(id), body);
+
+  setStatus = (taskId: number, statusId: number, userId: number) => {
+    console.log(Endpoint.TASKS.status(taskId, statusId, userId));
+    return this.get(Endpoint.TASKS.status(taskId, statusId, userId));
+  }
+
 }
 
 const taskService = new TaskService();

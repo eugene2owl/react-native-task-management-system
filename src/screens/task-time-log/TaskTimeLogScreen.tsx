@@ -11,8 +11,6 @@ import { CentralSpinner } from "../../lib/components/central-spinner/CentralSpin
 import { Button, List, TextInput } from "react-native-paper";
 import { Color } from "../../assets/color";
 import { SnackNotification } from "../../lib/components/snack-notification/SnackNotification";
-import { teamService } from "../../lib/network/http-services/team-service";
-import { TeamCreateRequest, TeamCreateResponse } from "../../lib/models/team/team-create";
 
 const DEFAULT_TIMELOG = {
   id: 0,

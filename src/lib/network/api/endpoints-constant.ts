@@ -37,6 +37,8 @@ class Tasks {
 
   static readonly timeline = (search: string) => Tasks.base + '/timeline?pattern=' + search;
   static readonly timelog = (id: number) => Tasks.base + '/timelog/' + id;
+  static readonly status = (taskId: number, statusId: number, userId: number) =>
+    Tasks.base + '/status/' + taskId + '?taskStatusId=' + statusId + '&userId=' + userId;
 }
 
 export class Endpoint {

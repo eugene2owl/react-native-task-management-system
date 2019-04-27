@@ -15,6 +15,7 @@ const navigatorConfig = {
   initialRouteName: AppAuthSwitch.AUTH_LOADING
 };
 
+console.disableYellowBox = true;
 const appAuthSwitchNavigator = createSwitchNavigator(routeConfigs, navigatorConfig);
 
 export default createAppContainer(appAuthSwitchNavigator)
