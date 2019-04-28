@@ -75,7 +75,6 @@ export class TaskStatusFlowScreen extends Component {
     }
   }
 
-  // TODO fix navigation
   private navigateToUserDetails = (id: number) => this.navigation.navigate(TasksStack.TASK_DETAILS, { id: id });
 
   render(): ReactNode {
@@ -125,7 +124,7 @@ export class TaskStatusFlowScreen extends Component {
                 { this.state.taskTimeliness.map((timeline: TaskTimeline) =>
                   <List.Item
                     title={ timeline.taskname }
-                    style={ styles.listItem } // TODO calculate icon
+                    style={ styles.listItem }
                     left={ props => <List.Icon { ...props } icon={ this.getIcon(timeline.status) }
                                                color={ Color.LIGHT }/> }
                     right={ () => (

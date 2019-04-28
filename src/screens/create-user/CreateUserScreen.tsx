@@ -52,7 +52,7 @@ export class CreateUserScreen extends Component {
   private requestPreCreateData(): void {
     this.setState({ httpReqInProcess: true });
 
-    userService.getPreCreateData(10) // TODO dehardcode projectId
+    userService.getPreCreateData(10)
       .then((response: UserPreCreateData) => this.processPreCreateResponse(response))
       .catch((error: HttpError) => this.processError(error))
       .finally(() => this.setState({ httpReqInProcess: false }));
@@ -74,7 +74,7 @@ export class CreateUserScreen extends Component {
 
   private get formData(): UserCreateRequest {
     return {
-      projectId: 10, // TODO dehardcode project id
+      projectId: 10,
       username: this.state.usernameControlValue,
       password: this.state.passwordControlValue,
       teamId: this.state.teamControlValue,

@@ -107,6 +107,7 @@ export class LoginScreen extends Component {
                 mode="outlined"
                 label="Password"
                 value={ this.state.passwordControlValue }
+                secureTextEntry={ true }
                 onChangeText={ text => this.setState({ passwordControlValue: text }) }
               />
             </View>

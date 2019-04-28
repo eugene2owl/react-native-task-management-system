@@ -23,7 +23,7 @@ interface State {
   httpReqInProcess: boolean;
 }
 
-export class CreateTeamScreen extends Component { // TODO recieve user role from server and view it in descr to align properly
+export class CreateTeamScreen extends Component {
 
   state: State = {
     candidates: [],
@@ -47,7 +47,7 @@ export class CreateTeamScreen extends Component { // TODO recieve user role from
   private requestPreCreateData(): void {
     this.setState({ httpReqInProcess: true });
 
-    teamService.getPreCreateData(10) // TODO dehardcode projectId
+    teamService.getPreCreateData(10)
       .then((response: UserCandidate[]) => this.processPreCreateResponse(response))
       .catch((error: HttpError) => this.processError(error))
       .finally(() => this.setState({ httpReqInProcess: false }));
@@ -69,7 +69,7 @@ export class CreateTeamScreen extends Component { // TODO recieve user role from
 
   private get formData(): TeamCreateRequest {
     return {
-      projectId: 10, // TODO dehardcode project id
+      projectId: 10,
       name: this.state.nameControlValue,
       leader: this.state.leaderControlValue,
       members: this.state.membersControlValue

@@ -100,7 +100,7 @@ export class TaskTimeLogScreen extends Component {
   private get formData(): TaskTimelogRequest {
     // @ts-ignore
     return {
-      userId: 10, // TODO dehardcode user id
+      userId: 10,
       taskId: this.state.id,
       comment: this.state.commentControlValue,
       hoursLogged: this.state.hoursControlValue,

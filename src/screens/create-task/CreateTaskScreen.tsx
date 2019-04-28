@@ -57,7 +57,7 @@ export class CreateTaskScreen extends Component {
   private requestPreCreateData(): void {
     this.setState({ httpReqInProcess: true });
 
-    taskService.getPreCreateData(10) // TODO dehardcode projectId
+    taskService.getPreCreateData(10)
       .then((response: TaskPreCreateData) => this.processPreCreateResponse(response))
       .catch((error: HttpError) => this.processError(error))
       .finally(() => this.setState({ httpReqInProcess: false }));
@@ -77,9 +77,9 @@ export class CreateTaskScreen extends Component {
 
   private get formData(): TaskCreateRequest {
     const request: TaskCreateRequest = {
-      projectId: 10, // TODO dehardcode project id
+      projectId: 10,
       name: this.state.nameControlValue,
-      createdBy: 11 // TODO dehardcode user id
+      createdBy: 11
     };
     if (this.state.deadlineControlValue) {
       request.deadline = this.state.deadlineControlValue;
@@ -98,7 +98,7 @@ export class CreateTaskScreen extends Component {
 
   private sendFormData(): void {
     this.setState({ httpReqInProcess: true });
-    console.log('Send form: ', this.formData); // TODO remove
+    console.log('Send form: ', this.formData);
 
     taskService.create(this.formData)
       .then((response: UserListItem) => this.processCreateResponse(response))

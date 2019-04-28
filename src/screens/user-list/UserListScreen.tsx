@@ -20,7 +20,7 @@ interface State {
   httpReqInProcess: boolean;
 }
 
-export class UserListScreen extends Component { // TODO pull refresh feature
+export class UserListScreen extends Component {
 
   state: State = {
     users: [],
@@ -39,7 +39,7 @@ export class UserListScreen extends Component { // TODO pull refresh feature
   private requestContent(byRefresh?: boolean): void {
     this.setState(byRefresh ? { refreshing: true } : { httpReqInProcess: true });
 
-    userService.getAll(10) // TODO dehardcode project id
+    userService.getAll(10)
       .then((response: UserListItem[]) => this.processResponse(response))
       .catch((error: HttpError) => this.processError(error))
       .finally(() => this.setState({ httpReqInProcess: false, refreshing: false }));

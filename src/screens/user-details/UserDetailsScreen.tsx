@@ -52,7 +52,7 @@ export class UserDetailsScreen extends Component {
   private requestContent(): void {
     this.setState({ httpReqInProcess: true });
 
-    userService.getDetails(this.state.id || 10) // TODO dehardcode user session id
+    userService.getDetails(this.state.id || 10)
       .then((response: UserDetails) => this.processResponse(response))
       .catch((error: HttpError) => this.processError(error))
       .finally(() => this.setState({ httpReqInProcess: false }));

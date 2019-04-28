@@ -38,7 +38,7 @@ export class TeamListScreen extends Component {
   private requestContent(byRefresh?: boolean): void {
     this.setState(byRefresh ? { refreshing: true } : { httpReqInProcess: true });
 
-    teamService.getAll(10) // TODO dehardcode project id
+    teamService.getAll(10)
       .then((response: TeamListItem[]) => this.processResponse(response))
       .catch((error: HttpError) => this.processError(error))
       .finally(() => this.setState({ httpReqInProcess: false, refreshing: false }));

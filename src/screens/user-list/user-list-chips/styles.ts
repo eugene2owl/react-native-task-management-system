@@ -6,7 +6,7 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    marginLeft: -120
+    marginLeft: -115
   },
   chip: {
     height: 32,

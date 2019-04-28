@@ -58,11 +58,10 @@ export default StyleSheet.create({
   },
   childrenChipContainer: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    paddingVertical: 10
   },
   childChip: {
-    marginVertical: 5
   },
   descriptionContainer: {
     paddingVertical: 10

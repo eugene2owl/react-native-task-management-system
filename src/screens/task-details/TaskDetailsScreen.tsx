@@ -14,6 +14,7 @@ import { Color } from "../../assets/color";
 import { SingleOptionDialog } from "../../lib/components/dialogs/single-option-dialog/SingleOptionDialog";
 import { TaskStatus } from "../../lib/models/task/task-status";
 import { PickerItem } from "react-native-material-dialog";
+import { CentralSpinner } from "../../lib/components/central-spinner/CentralSpinner";
 
 const defaultTaskDetails: TaskDetails = {
   id: 0,
@@ -128,7 +129,7 @@ export class TaskDetailsScreen extends Component {
 
   private sendStatus(status: PickerItem): void {
     this.closeStatusDialog();
-    taskService.setStatus(this.state.id, +status.value, 10) // TODO dehardcode user id
+    taskService.setStatus(this.state.id, +status.value, 10)
       .then((response: any) => this.processPostResponse(status))
       .catch((error: HttpError) => this.processError(error))
       .finally(() => this.setState({ httpReqInProcess: false }));
@@ -152,6 +153,8 @@ export class TaskDetailsScreen extends Component {
     return (
       <View style={ styles.container }>
         <ScreenHeader text="Task Details" leftIcon={ goBackIcon } rightIcon={ timelogIcon }/>
+
+        <CentralSpinner animating={ this.state.httpReqInProcess }/>
 
         <SingleOptionDialog
           title="Set new status"
@@ -227,17 +230,19 @@ export class TaskDetailsScreen extends Component {
           {
             this.hasChildren &&
             <View>
-              <Text>Children</Text>
               <View style={ styles.childrenChipContainer }>
                 {
                   !!details.children && details.children.map(child =>
-                    <Chip
-                      theme={ chipThemeOcean }
-                      mode="outlined"
-                      style={ styles.childChip }
-                      onPress={ () => this.navigateToTaskDetails(child.id) }
-                      key={ child.id }
-                    >{ child.name }</Chip>
+                    <View style={ styles.chipContainer }>
+                      <Text>Children</Text>
+                      <Chip
+                        theme={ chipThemeOcean }
+                        mode="outlined"
+                        style={ styles.childChip }
+                        onPress={ () => this.navigateToTaskDetails(child.id) }
+                        key={ child.id }
+                      >{ child.name }</Chip>
+                    </View>
                   )
                 }
               </View>

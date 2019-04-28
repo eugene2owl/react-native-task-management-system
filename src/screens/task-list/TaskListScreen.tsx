@@ -51,7 +51,7 @@ export class TaskListScreen extends Component {
     this.setState(byRefresh ? { refreshing: true } : { httpReqInProcess: true });
 
     taskService.getAll(
-      10, // TODO dehardcode project id
+      10,
       this.state.searchText,
       this.state.statusControlValue,
       this.state.expiredOnlyControlValue
@@ -93,7 +93,7 @@ export class TaskListScreen extends Component {
     return date < new Date();
   }
 
-  render(): ReactNode { // TODO add executor list and redirection
+  render(): ReactNode {
     const openSearchIcon = { name: 'search', onPress: () => this.setState({ searchOpened: true }) };
     const searchIcon = {
       onPress: (text: string) => {
